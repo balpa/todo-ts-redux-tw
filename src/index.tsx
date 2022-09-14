@@ -6,8 +6,6 @@ import { store } from './store'
 import { Provider } from 'react-redux'
 //import { configureStore } from '@reduxjs/toolkit'
 
-
-
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );

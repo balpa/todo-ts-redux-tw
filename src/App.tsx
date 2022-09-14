@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import './index.css';
+import TodoItem from './components/TodoItem';
 
-function App() {
-  const COLOR_PALETTE = [
+const App = () => {
+  const COLOR_PALETTE: string[] = [
     "#F9ED69", //yellow-ish
     "#F08A5D", //orange-ish
     "#B83B5E", //fuschia?typo
@@ -13,7 +14,7 @@ function App() {
   const [maxCharError, setMaxCharError] = useState<boolean>(false)
   const [charactersLeft, setCharactersLeft] = useState<number>(160)
 
-  useEffect(() => {
+  useEffect(() => {     //max input char length ctrl
     setCharactersLeft(160 - todoUserInput.length)
 
     if (todoUserInput.length > 160) setMaxCharError(true)
@@ -32,7 +33,14 @@ function App() {
         </div>
       </div>
       {maxCharError && <span className='text-red-500 font-extrabold absolute top-1'>Maximum 160 characters allowed!</span>}
-      <button className='bg-fuschia w-3/12 h-10 rounded-lg duration-700 shadow-xl hover:text-white hover:bg-[#D85B7E] '>Create</button>
+      <button className='bg-fuschia w-3/12 h-10 rounded-lg duration-700 shadow-xl hover:text-white hover:bg-[#D85B7E] '>
+        Create
+      </button>
+      <div className='w-10/12'>
+        <TodoItem
+          color={COLOR_PALETTE[Math.floor(Math.random() * COLOR_PALETTE.length)]}
+        />
+      </div>
     </div>
 
   );
