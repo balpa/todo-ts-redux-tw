@@ -22,18 +22,18 @@ const App = () => {
   }, [todoUserInput])
 
   return (
-    <div className="bg-gray-800 w-screen h-screen flex flex-col items-center">
+    <div className="bg-[#FFC300] w-screen h-screen flex flex-col items-center">
       <div className='w-10/12 h-30 items-center flex flex-col '>
         <textarea
           className='w-10/12 mt-8 h-18 rounded-lg focus:outline-0 p-2'
           onChange={(e) => { setTodoUserInput(e.target.value) }}>
         </textarea>
         <div className='flex flex-row w-10/12 justify-end'>
-          <span className='text-white text-sm'>{`${charactersLeft}/160`}</span>
+          <span className='text-black text-sm'>{`${charactersLeft}/160`}</span>
         </div>
       </div>
       {maxCharError && <span className='text-red-500 font-extrabold absolute top-1'>Maximum 160 characters allowed!</span>}
-      <button className='bg-fuschia w-3/12 h-10 rounded-lg duration-700 shadow-xl hover:text-white hover:bg-[#D85B7E] '>
+      <button className='bg-fuschia w-3/12 h-10 text-white rounded-lg duration-700 shadow-xl hover:text-black hover:bg-[#D85B7E] '>
         Create
       </button>
       <div className='w-10/12'>

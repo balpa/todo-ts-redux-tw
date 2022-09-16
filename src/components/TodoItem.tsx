@@ -7,7 +7,7 @@ interface PropTypes {
 const TodoItem = ({ color }: PropTypes) => {
 
   return (
-    <div className='w-full flex flex-row rounded-lg'>
+    <div className='w-full flex flex-row rounded-lg bg-[#C70039]'>
       <div className='flex-1 w-32 rounded-md'>
         sol
       </div>
