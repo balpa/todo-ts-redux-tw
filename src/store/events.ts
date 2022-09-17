@@ -1,26 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit'
-import type { RootState } from '../store'
+import { PayloadAction } from '@reduxjs/toolkit'
 
-interface EventText {
-  value: String,
-}
-const initialState: EventText = {
+const initialState = {
   value: "",
-}
+  time: Date.now(),
+  isCompleted: false
+} as EventInfo
 
-export const events = createSlice({
-  name: 'events',
+export const eventSlice = createSlice({
+  name: 'eventSetter',
   initialState,
   reducers: {
-    addEventText: (state) => {
-
-    },
-    deleteEventText: (state) => {
-    },
+    addEventText: (state, action) => action.payload,
+    deleteEventText: (state, action) => action.payload,
+    addEventWithPayload: (state, action: PayloadAction<String>) => {
+      state.value = action.payload
+    }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { addEventText, deleteEventText } = events.actions
-export const selectCount = (state: RootState) => state.events.value
-export default events.reducer
+export const { addEventText, deleteEventText, addEventWithPayload } = eventSlice.actions
+export default eventSlice.reducer

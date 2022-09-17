@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import './index.css';
 import TodoItem from './components/TodoItem';
+import { useDispatch, useSelector } from 'react-redux';
+import { addEventWithPayload } from './store/events';
+import { RootState } from './store';
+
 
 const App = () => {
   const COLOR_PALETTE: string[] = [
@@ -9,6 +13,10 @@ const App = () => {
     "#B83B5E", //fuschia?typo
     "#6A2C70", //purple-ish
   ]
+
+  const dispatch = useDispatch()
+  const currentString = useSelector((state: RootState) => state.eventSetter.value)
+  console.log(currentString)
 
   const [todoUserInput, setTodoUserInput] = useState<string>('')
   const [maxCharError, setMaxCharError] = useState<boolean>(false)
@@ -33,9 +41,14 @@ const App = () => {
         </div>
       </div>
       {maxCharError && <span className='text-red-500 font-extrabold absolute top-1'>Maximum 160 characters allowed!</span>}
-      <button className='bg-fuschia w-3/12 h-10 text-white rounded-lg duration-700 shadow-xl hover:text-black hover:bg-[#D85B7E] '>
+      <button className='bg-fuschia w-3/12 h-10 text-white rounded-lg duration-700 shadow-xl hover:text-black hover:bg-[#D85B7E]'
+        onClick={() => {
+          dispatch(addEventWithPayload("Berke"))
+        }}
+      >
         Create
       </button>
+      {currentString}
       <div className='w-10/12'>
         <TodoItem
           color={COLOR_PALETTE[Math.floor(Math.random() * COLOR_PALETTE.length)]}
