@@ -43,7 +43,7 @@ const App = () => {
       {maxCharError && <span className='text-red-500 font-extrabold absolute top-1'>Maximum 160 characters allowed!</span>}
       <button className='bg-fuschia w-3/12 h-10 text-white rounded-lg duration-700 shadow-xl hover:text-black hover:bg-[#D85B7E]'
         onClick={() => {
-          dispatch(addEventWithPayload("Berke"))
+          dispatch(addEventWithPayload(todoUserInput))
         }}
       >
         Create
