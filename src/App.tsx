@@ -15,8 +15,8 @@ const App = () => {
   ]
 
   const dispatch = useDispatch()
-  const currentString = useSelector((state: RootState) => state.eventSetter.value)
-  console.log(currentString)
+  const currentArray = useSelector((state: RootState) => state.eventSetter)
+  console.log(currentArray)
 
   const [todoUserInput, setTodoUserInput] = useState<string>('')
   const [maxCharError, setMaxCharError] = useState<boolean>(false)
@@ -43,12 +43,16 @@ const App = () => {
       {maxCharError && <span className='text-red-500 font-extrabold absolute top-1'>Maximum 160 characters allowed!</span>}
       <button className='bg-fuschia w-3/12 h-10 text-white rounded-lg duration-700 shadow-xl hover:text-black hover:bg-[#D85B7E]'
         onClick={() => {
-          dispatch(addEventWithPayload(todoUserInput))
+          dispatch(addEventWithPayload({
+            value: todoUserInput,
+            time: Date.now(),
+            isCompleted: false
+          }))
         }}
       >
         Create
       </button>
-      {currentString}
+      {/* {currentString} */}
       <div className='w-10/12'>
         <TodoItem
           color={COLOR_PALETTE[Math.floor(Math.random() * COLOR_PALETTE.length)]}

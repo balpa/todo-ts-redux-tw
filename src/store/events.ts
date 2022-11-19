@@ -2,10 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 import { PayloadAction } from '@reduxjs/toolkit'
 
 const initialState = {
-  value: "",
-  time: Date.now(),
-  isCompleted: false
-} as EventInfo
+  eventsArray: []
+} as EventArray
 
 export const eventSlice = createSlice({
   name: 'eventSetter',
@@ -13,8 +11,9 @@ export const eventSlice = createSlice({
   reducers: {
     addEventText: (state, action) => action.payload,
     deleteEventText: (state, action) => action.payload,
-    addEventWithPayload: (state, action: PayloadAction<String>) => {
-      state.value = action.payload
+    addEventWithPayload: (state, action: PayloadAction<Object>) => {
+
+      state.eventsArray.push(action.payload)
     }
   },
 })
