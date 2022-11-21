@@ -7,8 +7,8 @@ module.exports = {
     extend: {
       colors: {
         'yellow': '#F9ED69',
-        'orange': '#F08A5D', 
-        'fuschia': '#B83B5E', 
+        'orange': '#F08A5D',
+        'fuschia': '#B83B5E',
         'purple': '#6A2C70',
       }
     },

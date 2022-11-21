@@ -4,6 +4,7 @@ import TodoItem from './components/TodoItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { addEventWithPayload } from './store/events';
 import { RootState } from './store';
+import AddTaskIcon from '@mui/icons-material/AddTask';
 
 
 const App = () => {
@@ -28,6 +29,16 @@ const App = () => {
     else setMaxCharError(false)
   }, [todoUserInput])
 
+  function submitTodoItem() {
+
+
+    dispatch(addEventWithPayload({
+      value: todoUserInput,
+      time: Date.now(),
+      isCompleted: false
+    }))
+  }
+  // pomodoro-like will be added l8r
   return (
     <div className="bg-[#FFC300] w-screen h-screen flex flex-col items-center">
       <div className='w-10/12 h-30 items-center flex flex-col '>
@@ -38,18 +49,18 @@ const App = () => {
         <div className='flex flex-row w-10/12 justify-end'>
           <span className='text-black text-sm'>{`${charactersLeft}/160`}</span>
         </div>
+        {/* <input
+          className=' w-24 h-16 rounded-lg text-center text-4xl focus:outline-none'
+          type="number"
+          defaultValue={10}
+        />
+        <span>Minutes to complete!</span> */}
       </div>
       {maxCharError && <span className='text-red-500 font-extrabold absolute top-1'>Maximum 160 characters allowed!</span>}
-      <button className='bg-fuschia w-3/12 h-10 text-white rounded-lg duration-700 shadow-xl hover:text-black hover:bg-[#D85B7E]'
-        onClick={() => {
-          dispatch(addEventWithPayload({
-            value: todoUserInput,
-            time: Date.now(),
-            isCompleted: false
-          }))
-        }}
+      <button className='bg-fuschia w-1/6 h-10 text-white rounded-lg duration-700 shadow-xl hover:text-black hover:bg-[#D85B7E]'
+        onClick={() => { submitTodoItem() }}
       >
-        Create
+        <AddTaskIcon />
       </button>
       <div className='w-10/12'>
         <>
@@ -62,7 +73,7 @@ const App = () => {
           }
         </>
       </div>
-    </div>
+    </div >
 
   );
 }
