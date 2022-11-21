@@ -16,7 +16,6 @@ const App = () => {
 
   const dispatch = useDispatch()
   const currentArray = useSelector((state: RootState) => state.eventSetter)
-  console.log(currentArray)
 
   const [todoUserInput, setTodoUserInput] = useState<string>('')
   const [maxCharError, setMaxCharError] = useState<boolean>(false)
@@ -52,11 +51,16 @@ const App = () => {
       >
         Create
       </button>
-      {/* {currentString} */}
       <div className='w-10/12'>
-        <TodoItem
-          color={COLOR_PALETTE[Math.floor(Math.random() * COLOR_PALETTE.length)]}
-        />
+        <>
+          {currentArray.eventsArray.map((item, index) => {
+            return <TodoItem
+              key={index}
+              data={item}
+              color={COLOR_PALETTE[Math.floor(Math.random() * COLOR_PALETTE.length)]} />
+          })
+          }
+        </>
       </div>
     </div>
 
