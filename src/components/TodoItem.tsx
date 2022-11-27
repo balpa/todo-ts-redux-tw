@@ -11,20 +11,23 @@ interface PropTypes {
   }
 }
 
-
 const TodoItem = ({ color, data }: PropTypes) => {
 
   const { value, time, isCompleted }: { value: string, time: number, isCompleted: boolean } = data
 
   let timestamp: string = new Date(time).toString().split(' ').slice(0, 5).join(' ')
 
+  function completeButton() {
+    console.log("complete button clicked")
+  }
+
   return (
     <>
       <div className='w-full flex flex-row rounded-lg bg-[#C70039] mt-5'>
-        <div className='w-4/5 rounded-md p-3 text-white'>
+        <div className='flex-1 rounded-md p-3 text-white break-all'>
           {value}
         </div>
-        <div className='w-36 rounded-r-md p-3 border-l-4 flex flex-col'>
+        <div className='flex-2 rounded-r-md p-3 border-l-4 flex flex-col'>
           <div className='p-2 text-center text-xs text-white'>
             Created at: <br />
             {timestamp}
@@ -34,7 +37,7 @@ const TodoItem = ({ color, data }: PropTypes) => {
           </div>
         </div>
       </div>
-      <div className='w-full text-center'>Complete!</div>
+      <div className='w-full text-center' onClick={() => { completeButton() }}>Click to complete!</div>
     </>
   )
 }
